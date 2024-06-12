@@ -1,3 +1,7 @@
+#JARVIS
+#Your daily dose of AI magic—think of it as your personal Siri or Google Assistant, but with a fun twist (and not an actual AI)!
+#Developer- Kyal Sin Ko Ko
+#Date- 2024 January 21
 import speech_recognition as sr
 import wikipedia
 import pyttsx3
