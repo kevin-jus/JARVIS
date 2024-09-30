@@ -2,6 +2,7 @@
 #Your daily dose of AI magic—think of it as your personal Siri or Google Assistant, but with a fun twist (and not an actual AI)!
 #Developer- Kyal Sin Ko Ko
 #Date- 2024 January 21
+#Checked in at 8:48:20 PM September 30, 2024
 import speech_recognition as sr
 import wikipedia
 import pyttsx3
@@ -9,6 +10,7 @@ import requests
 import random
 import time
 import os
+import datetime
 
 # Initialize the text-to-speech engine
 engine = pyttsx3.init()
