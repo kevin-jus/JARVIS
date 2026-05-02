@@ -1,43 +1,56 @@
 # JARVIS
 
-A small hobbyist voice assistant script written in Python. **This is not AI.** It listens for your voice, matches keywords, and responds with pre-defined actions — nothing more, nothing less. Think of it as a fun weekend project, not a product.
+A lightweight, keyword-driven voice assistant built with Python as a personal hobby project.
 
-## What it actually does
+> **Note:** This is not an AI. JARVIS uses rule-based keyword matching — there is no machine learning, no language model, and no neural network involved. It is a single-file Python script intended for learning and experimentation.
 
-- Listens to your microphone using Google's free Speech Recognition API
-- Matches what you said against a handful of hardcoded keywords
-- Speaks back using your system's text-to-speech engine (`pyttsx3`)
-- Looks up a Wikipedia summary if you say "what is" or "who is"
-- Fetches current weather from OpenWeatherMap if you say "weather forecast of [city]"
-- Opens YouTube or plays a random song from a small hardcoded list of YouTube URLs
-- Waits 10 seconds if you say "please wait"
-- Exits if you say "quit" or "exit"
+---
 
-That's it. There's no machine learning, no large language model, no neural network. It's a single Python file with an `if/elif` chain.
+## Features
+
+| Capability | Details |
+|---|---|
+| Voice input | Captures microphone audio via the Google Speech Recognition API |
+| Text-to-speech | Responds using the system's built-in TTS engine (`pyttsx3`) |
+| Wikipedia lookup | Returns a short summary for "what is / who is" queries |
+| Weather | Reports current conditions for a named city via OpenWeatherMap |
+| Media | Opens YouTube or plays a random track from a curated URL list |
+| Basic commands | Name, wait, and exit controls |
+
+---
 
 ## Requirements
 
 - Python 3.x
 - A working microphone
-- Internet connection (for speech recognition, Wikipedia, and weather)
+- Internet connection (required for speech recognition, Wikipedia, and weather)
+
+---
 
 ## Installation
 
-1. Clone the repo:
+1. **Clone the repository**
+
     ```bash
     git clone https://github.com/kevin-jus/JARVIS.git
     cd JARVIS
     ```
 
-2. Install dependencies:
+2. **Install dependencies**
+
     ```bash
     pip install speechrecognition wikipedia pyttsx3 requests
     ```
 
-3. Get a free OpenWeatherMap API key at https://openweathermap.org/api and replace the hardcoded key in `JARVIS.py`:
+3. **Configure your OpenWeatherMap API key**
+
+    Register for a free key at <https://openweathermap.org/api>, then open `JARVIS.py` and replace the placeholder:
+
     ```python
     api_key = 'YOUR_API_KEY_HERE'
     ```
+
+---
 
 ## Usage
 
@@ -45,27 +58,37 @@ That's it. There's no machine learning, no large language model, no neural netwo
 python JARVIS.py
 ```
 
-Speak one of the supported commands:
+Speak any of the supported commands listed below. Recognition is case-insensitive and based on substring matching.
 
-| What you say | What happens |
+| Voice command | Response |
 |---|---|
-| "what is [topic]" / "who is [person]" | Reads a Wikipedia summary |
-| "weather forecast of [city]" | Reads current weather |
-| "your name" | It tells you its name |
-| "please wait" | Waits 10 seconds |
-| "open youtube" | Opens youtube.com in your browser |
-| "play some music" | Opens a random YouTube music link |
-| "quit" / "exit" | Stops the script |
+| `"what is [topic]"` / `"who is [person]"` | Reads a 4-sentence Wikipedia summary |
+| `"weather forecast of [city]"` | Reports temperature and weather description |
+| `"your name"` | States the assistant's name |
+| `"please wait"` | Pauses execution for 10 seconds |
+| `"open youtube"` | Opens `youtube.com` in the default browser |
+| `"play some music"` | Opens a randomly selected YouTube link |
+| `"quit"` / `"exit"` | Terminates the script |
 
-Anything else gets: *"Sorry, I can't do that yet."*
+Unrecognised input returns: *"Sorry, I can't do that yet."*
 
-## Known limitations
+---
 
-- Windows-only for opening URLs (`os.system("start ...")`)
-- The API key for OpenWeatherMap is hardcoded — remember to replace it before sharing your code
-- No context, no memory, no conversation — every command is independent
-- Music is just a list of 4 hardcoded YouTube links
+## Known Limitations
+
+- **Windows only** — URL and browser launching uses `os.system("start ...")`, which does not work on macOS or Linux.
+- **No conversational context** — each command is handled independently; there is no memory between turns.
+- **Hardcoded music list** — the playlist consists of 4 fixed YouTube URLs defined directly in the source.
+- **API key in source** — the OpenWeatherMap key is stored in plain text; avoid committing your personal key to a public repository.
+
+---
+
+## Contributing
+
+Issues and pull requests are welcome. This is a small personal project, so please keep expectations proportional — large feature requests may not be accepted.
+
+---
 
 ## License
 
-MIT — see [LICENSE](LICENSE).
+This project is licensed under the MIT License. See [LICENSE](LICENSE) for details.
