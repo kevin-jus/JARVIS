@@ -1,47 +1,71 @@
 # JARVIS
-Your daily dose of AI magic—think of it as your personal Siri or Google Assistant, but with a fun twist (and not an actual AI)!
 
-## README
+A small hobbyist voice assistant script written in Python. **This is not AI.** It listens for your voice, matches keywords, and responds with pre-defined actions — nothing more, nothing less. Think of it as a fun weekend project, not a product.
 
-### JARVIS
-JARVIS is an interactive AI voice assistant built with Python. It mimics the behavior of popular voice assistants like Google Assistant and Siri, providing a fun and engaging user experience.
+## What it actually does
 
-### Features
-- **Speech Recognition**: Understands and interprets spoken queries.
-- **Wikipedia Integration**: Fetches and reads out information from Wikipedia.
-- **Text-to-Speech**: Converts text responses to spoken words.
-- **Weather Forecast**: Retrieves current weather information for specified cities.
-- **Music Player**: Plays random songs from a list of YouTube URLs.
-- **Simple Commands**: Responds to basic commands like introducing itself, waiting, and opening YouTube.
+- Listens to your microphone using Google's free Speech Recognition API
+- Matches what you said against a handful of hardcoded keywords
+- Speaks back using your system's text-to-speech engine (`pyttsx3`)
+- Looks up a Wikipedia summary if you say "what is" or "who is"
+- Fetches current weather from OpenWeatherMap if you say "weather forecast of [city]"
+- Opens YouTube or plays a random song from a small hardcoded list of YouTube URLs
+- Waits 10 seconds if you say "please wait"
+- Exits if you say "quit" or "exit"
 
-### Installation
-1. Clone the repository:
+That's it. There's no machine learning, no large language model, no neural network. It's a single Python file with an `if/elif` chain.
+
+## Requirements
+
+- Python 3.x
+- A working microphone
+- Internet connection (for speech recognition, Wikipedia, and weather)
+
+## Installation
+
+1. Clone the repo:
     ```bash
     git clone https://github.com/kevin-jus/JARVIS.git
     cd JARVIS
     ```
 
-2. Install the required libraries:
+2. Install dependencies:
     ```bash
     pip install speechrecognition wikipedia pyttsx3 requests
     ```
 
-3. Set up your OpenWeatherMap API key:
-    Replace `'035da0fd91dd054789a8bfd2c95cdf60'` with your own OpenWeatherMap API key in the code.
-
-### Usage
-1. Run the script:
-    ```bash
-    python JARVIS.py
+3. Get a free OpenWeatherMap API key at https://openweathermap.org/api and replace the hardcoded key in `JARVIS.py`:
+    ```python
+    api_key = 'YOUR_API_KEY_HERE'
     ```
 
-2. Interact with JARVIS:
-    - Ask questions starting with "what is" or "who is" to get Wikipedia summaries.
-    - Say "weather forecast of [city]" to get current weather information.
-    - Use simple commands like "your name", "please wait", "open YouTube", "play some music", "quit", or "exit".
+## Usage
 
-### Contributing
-Feel free to submit issues or pull requests. Contributions are welcome!
+```bash
+python JARVIS.py
+```
 
-### License
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+Speak one of the supported commands:
+
+| What you say | What happens |
+|---|---|
+| "what is [topic]" / "who is [person]" | Reads a Wikipedia summary |
+| "weather forecast of [city]" | Reads current weather |
+| "your name" | It tells you its name |
+| "please wait" | Waits 10 seconds |
+| "open youtube" | Opens youtube.com in your browser |
+| "play some music" | Opens a random YouTube music link |
+| "quit" / "exit" | Stops the script |
+
+Anything else gets: *"Sorry, I can't do that yet."*
+
+## Known limitations
+
+- Windows-only for opening URLs (`os.system("start ...")`)
+- The API key for OpenWeatherMap is hardcoded — remember to replace it before sharing your code
+- No context, no memory, no conversation — every command is independent
+- Music is just a list of 4 hardcoded YouTube links
+
+## License
+
+MIT — see [LICENSE](LICENSE).
